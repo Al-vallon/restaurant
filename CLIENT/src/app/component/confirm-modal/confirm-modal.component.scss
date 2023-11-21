@@ -1,0 +1,20 @@
+.container-modal{
+    h3{
+        text-align: center;
+    }
+    padding:20px;
+    .container-btn{
+
+        .Cancel-btn{
+            margin-right:.5em;
+            margin-top: 1em;
+            height:2.5em;
+            float: right;
+        }
+        .Delete-btn {
+            margin-left:.5em;
+            margin-top: 1em;
+            height:2.5em;
+        }
+    }
+}
