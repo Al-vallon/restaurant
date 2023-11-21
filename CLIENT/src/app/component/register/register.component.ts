@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, take } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http'
-import { HttpService, Users } from '../../service/http/http.service';
+import { HttpService, Users } from '../../service/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 // import { ErrorInterceptor } from '../../service/errorInterceptor/error-interceptor.service';
 import { Router } from '@angular/router';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 // import { ErrorService } from '../../service/error/error.service';
 
