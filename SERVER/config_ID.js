@@ -5,12 +5,13 @@ module.exports = {
     port: 5000,
     // Config DATAbASE
     dbConfig: {
-        user: 'postgres',
-        password: 'root',
-        host: 'localhost',
+        user: '',
+        password: '',
+        host: '',
         port: 5432,
-        database: 'newDB',
+        database: 'n',
         dialect: 'postgres',
     },
+    url: 'https://localhost:4200',
     client: null
 };

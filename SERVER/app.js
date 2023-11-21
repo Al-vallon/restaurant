@@ -24,9 +24,9 @@ const config_ID = require('./config_ID');
 const dbConfig = id.dbConfig;
 
 const options = {
-    key: fs.readFileSync('D:/Developpement web/project/server/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/project/server/server.cert')
-  };
+    key: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.key'),
+    cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.cert')
+};
   
   const server = https.createServer(options, app);
 
@@ -35,7 +35,7 @@ app.use
     (
         express.json(),
         cors({
-            origin: 'https://localhost:4200',
+            origin: id.url,
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
             credentials: true,
         })

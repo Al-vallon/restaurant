@@ -1,0 +1,53 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>Connexion</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+
+            <form class="form" [formGroup]="userForm" (submit)="sendLogin()">
+                <mat-form-field class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput
+                    placeholder="Nom"  
+                    type="text"
+                    formControlName="name" required>
+                </mat-form-field>
+
+                <div *ngIf="errorMessage$ | async as errorMessage">
+                    <p>{{ errorMessage }}</p>
+                </div>
+
+                <!-- <mat-form-field>
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="user@example.com" formControlName="mail" >
+                    @if (userForm.get('mail') && userForm.get('mail')?.dirty) {
+                    <mat-error>{{getErrorMessage()}}</mat-error>
+                    }
+                </mat-form-field> -->
+
+                <mat-form-field class="full-width"> 
+                    <mat-label>Password</mat-label>
+                    <input matInput 
+                    [type]="hide ? 'password' : 'text'"
+                    placeholder="Mot de passe"  
+                    type="password"
+                    formControlName="password" required>
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <p class="register">Pas encore inscrit ? <span class="link-register" (click)="redirection()">Cliquer içi</span></p>
+            </form>
+            
+        </mat-card-actions>
+        <mat-card-footer class="footer">
+            <button mat-raised-button>Annuler</button>
+            <button mat-raised-button color="primary" (click)="sendLogin()">Valider</button>
+        </mat-card-footer>
+    </mat-card>
+
+
+</div>    
+    
