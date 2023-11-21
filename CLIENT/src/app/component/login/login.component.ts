@@ -50,12 +50,16 @@ export class LoginComponent implements OnDestroy {
     public dialog: MatDialog) 
     {}
 
+/*******************************************************************************************************
+ *         THIS METHOD MANAGES THE SENDING OF CONNECTION INFORMATION THROUGH THE HTTP SERVICE.         *
+ *      IT SUBSCRIBES TO THE OBSERVABLE RESULTING FROM THE REQUEST, AND STORES THE DATA RECEIVED,      *
+ * CHECKS WHETHER THE CONNECTION WAS SUCCESSFUL, AND REDIRECTS THE USER TO THE MAIN PAGE IF NECESSARY. *
+ *******************************************************************************************************/
 
     public sendLogin():void {
       this.HttpService.logUser(this.userForm.value as Users)
       .pipe(take(1))
       .subscribe((data: any) => {
-        console.log('data', data);
         this.userResultObservable = data
         console.log('this.userResultObservable', this.userResultObservable);
         if(this.userResultObservable.message === "Successful connection")  {
@@ -70,6 +74,12 @@ export class LoginComponent implements OnDestroy {
 
 
   /* FUNCTION */
+
+/************************************************************************************************
+ * This method retrieves the error message associated with the user form's email field.         *
+ * If the field is required and has no value, returns an appropriate message.                   *
+ * Otherwise, checks if the email format is invalid and returns a message accordingly.          *
+ ************************************************************************************************/
 
   public getErrorMessage(){
     const mailControl = this.userForm.get('mail')

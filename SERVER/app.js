@@ -25,10 +25,10 @@ const dbConfig = id.dbConfig;
 
 const options = {
     key: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.cert')
+    cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.crt')
 };
   
-  const server = https.createServer(options, app);
+const server = https.createServer(options, app);
 
 /* change body for post/put in json  */
 app.use

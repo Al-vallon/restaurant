@@ -43,17 +43,25 @@ export class RegisterComponent {
     public dialog: MatDialog) 
   {}
 
-    public sendNewUser() {
-      if (this.registerUserForm && this.registerUserForm.valid) {
-        this.HttpService.registerUser(this.registerUserForm.value as Users)
-        .pipe(take(1))
-        .subscribe((registerData: any) => {
-          this.saveRegisterUserData = registerData;
-          console.log('register', this.saveRegisterUserData);
-        })
-    }
+/**************************************************************
+ * THIS METHOD SENDS NEW USER INFORMATION TO THE HTTP SERVICE *
+ *    TO REGISTER A NEW USER. IT FIRST CHECKS THE VALIDITY    *
+ *        OF THE USER CREATION FORM BEFORE PROCEEDING         *
+ **************************************************************/
+
+  public sendNewUser() {
+    // if (this.registerUserForm && this.registerUserForm.valid) {
+      console.log('hop');
+      this.HttpService.registerUser(this.registerUserForm.value as Users)
+      .pipe(take(1))
+      .subscribe((registerData: any) => {
+        this.saveRegisterUserData = registerData;
+        console.log('register', this.saveRegisterUserData);
+      })
+    // }
   }
 
+  /* open confirm modal */
   public openDialog() {
     this.dialog.open(ConfirmModalComponent);
   }
