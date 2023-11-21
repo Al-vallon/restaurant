@@ -29,7 +29,7 @@ const getUserById = async (req, res) => {
         if (!selectedUser) {
             const message = 'No user found';
             console.log(errorColor, 'No user found', resetColor);
-            return res.status(404).json({ message });
+            return res.status(401).json({ message });
         }
 
         const message = 'A user has been found.';

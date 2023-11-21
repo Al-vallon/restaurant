@@ -22,8 +22,9 @@ export class httperrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 || error.status === 403 ) {
+        if (error.status === 401 || error.status === 403 || error.status === 400) {
           const errorMessage = error.error.message || 'Erreur d\'authentification';
+          console.log('error mesage: ' + error.error.message);
           this.snackbar.showSnackBar(errorMessage); /* call service snack bar to display error*/
         }
         return throwError(() => error.message )

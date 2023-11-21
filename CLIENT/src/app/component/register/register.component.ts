@@ -4,11 +4,12 @@ import { HttpClient, HttpResponse } from '@angular/common/http'
 import { HttpService, Users } from '../../service/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-// import { ErrorInterceptor } from '../../service/errorInterceptor/error-interceptor.service';
+// import { ErrorInterceptor } from '../../utility/httperror.interceptor';
 import { Router } from '@angular/router';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
-// import { ErrorService } from '../../service/error/error.service';
+
+import { ErrorService } from '../../service/error.service';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,7 @@ export class RegisterComponent {
     private http: HttpClient,
     private HttpService: HttpService,
     public fb: FormBuilder,
-    // private errorService: ErrorService,
+    private errorService: ErrorService,
     public dialog: MatDialog) 
   {}
 

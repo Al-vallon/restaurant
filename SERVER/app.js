@@ -27,18 +27,26 @@ const options = {
     key: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.key'),
     cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.crt')
 };
-  
+
 const server = https.createServer(options, app);
+
+server.on('error', (error) => {
+    console.error('Erreur de serveur HTTPS :', error.message);
+});
 
 /* change body for post/put in json  */
 app.use
     (
         express.json(),
         cors({
-            origin: id.url,
+            origin: 'https://localhost:4200',
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
             credentials: true,
-        })
+        }),
+        (err, req, res, next) => {
+            console.error('Erreur non gérée :', err);
+            res.status(500).json({ error: 'Erreur interne du serveur' });
+        }
     );
 
 app.options('*', cors());
