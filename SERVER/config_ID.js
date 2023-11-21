@@ -12,5 +12,6 @@ module.exports = {
         database: 'newDB',
         dialect: 'postgres',
     },
+    url: 'https://localhost:4200',
     client: null
 };
