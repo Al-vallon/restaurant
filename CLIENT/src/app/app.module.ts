@@ -25,6 +25,7 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ConfirmModalComponent } from './component/confirm-modal/confirm-modal.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 
 
@@ -36,7 +37,8 @@ import { ConfirmModalComponent } from './component/confirm-modal/confirm-modal.c
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,

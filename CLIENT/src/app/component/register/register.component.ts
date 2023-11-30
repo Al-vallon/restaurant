@@ -3,13 +3,13 @@ import { Observable, Subject, take } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http'
 import { HttpService, Users } from '../../service/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+
 // import { ErrorInterceptor } from '../../utility/httperror.interceptor';
 import { Router } from '@angular/router';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 
 import { ErrorService } from '../../service/error.service';
+import { FunctionsService } from '../../service/functions.service';
 
 @Component({
   selector: 'app-register',
@@ -41,7 +41,7 @@ export class RegisterComponent {
     private HttpService: HttpService,
     public fb: FormBuilder,
     private errorService: ErrorService,
-    public dialog: MatDialog) 
+    public fn: FunctionsService) 
   {}
 
 /**************************************************************
@@ -64,7 +64,7 @@ export class RegisterComponent {
 
   /* open confirm modal */
   public openDialog() {
-    this.dialog.open(ConfirmModalComponent);
+    this.fn.openDialog();
   }
 
 }

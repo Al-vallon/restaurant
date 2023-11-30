@@ -12,6 +12,7 @@
                     <input matInput
                     placeholder="Nom"  
                     type="text"
+                    autocomplete="name"
                     formControlName="name" required>
                 </mat-form-field>
 
@@ -31,7 +32,8 @@
                     <mat-label>Password</mat-label>
                     <input matInput 
                     [type]="hide ? 'password' : 'text'"
-                    placeholder="Mot de passe"  
+                    placeholder="Mot de passe" 
+                    autocomplete="current-password" 
                     type="password"
                     formControlName="password" required>
                     <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -43,7 +45,7 @@
             
         </mat-card-actions>
         <mat-card-footer class="footer">
-            <button mat-raised-button>Annuler</button>
+            <button mat-raised-button (click)="openDialog()">Annuler</button>
             <button mat-raised-button color="primary" (click)="sendLogin()">Valider</button>
         </mat-card-footer>
     </mat-card>

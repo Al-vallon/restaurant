@@ -27,6 +27,10 @@ export class ToolbarComponent {
     this.router.navigate(['/login']);
   }
 
+  public configuration() {
+    this.router.navigate(['/configuration']);
+  }
+
 
   constructor(public router: Router) {}
 }

@@ -3,10 +3,10 @@ import { Observable, Subject, take } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http'
 import { HttpService, Users } from '../../service/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 // import { ErrorInterceptor } from '../../service/errorInterceptor/error-interceptor.service';
 import { Router } from '@angular/router';
 import { ErrorService } from '../../service/error.service';
+import { FunctionsService } from '../../service/functions.service';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +47,7 @@ export class LoginComponent implements OnDestroy {
     private HttpService: HttpService,
     public fb: FormBuilder,
     private errorService: ErrorService,
-    public dialog: MatDialog) 
+    public fn: FunctionsService) 
     {}
 
 /*******************************************************************************************************
@@ -61,7 +61,7 @@ export class LoginComponent implements OnDestroy {
       .pipe(take(1))
       .subscribe((data: any) => {
         this.userResultObservable = data
-        console.log('this.userResultObservable', this.userResultObservable);
+        console.log('this.userResultObservable', this.userResultObservable, 'ok', data);
         if(this.userResultObservable.message === "Successful connection")  {
           sessionStorage.setItem('Token', this.userResultObservable.token);
           console.log('token', sessionStorage.getItem('Token'));
@@ -94,7 +94,9 @@ export class LoginComponent implements OnDestroy {
     this.router.navigate(['/register']);
   }
 
-  
+  public openDialog(){
+    this.fn.openDialog();
+  };
 
 
   

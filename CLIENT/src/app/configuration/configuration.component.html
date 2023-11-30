@@ -2,18 +2,18 @@
 <div class="container">
     <mat-card class="card">
         <mat-card-header>
-            <mat-card-title>Connexion</mat-card-title>
+            <mat-card-title>Configuration</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
 
-            <form class="form" [formGroup]="registerUserForm" (submit)="sendNewUser()">
+            <form class="form" [formGroup]="changeUserForm" (submit)="sendNewUserConfig()">
                 <mat-form-field class="full-width">
-                    <mat-label>Username</mat-label>
+                    <mat-label>Change username</mat-label>
                     <input matInput
                     placeholder="Nom"  
                     autocomplete="name"
                     type="text"
-                    formControlName="name" required>
+                    formControlName="name">
                 </mat-form-field>
 
                 <!-- <div *ngIf="errorMessage$ | async as errorMessage">
@@ -21,35 +21,35 @@
                 </div> -->
 
                 <mat-form-field class="full-width"> 
-                    <mat-label>Password</mat-label>
+                    <mat-label>New Password</mat-label>
                     <input matInput 
                     [type]="hide ? 'password' : 'text'"
                     placeholder="Mot de passe"  
                     type="password"
                     autocomplete="current-password"
-                    formControlName="password" required>
+                    formControlName="password">
                     <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
 
                 <mat-form-field class="full-width"> 
-                    <mat-label>Password 2</mat-label>
+                    <mat-label>Confirm new Password </mat-label>
                     <input matInput 
                     [type]="hide ? 'password' : 'text'"
                     placeholder="Mot de passe"  
                     type="password"
                     autocomplete="current-password"
-                    formControlName="password2" required>
+                    formControlName="password2">
                     <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <mat-label>Enter your email</mat-label>
+                    <mat-label>Change your email</mat-label>
                     <input matInput placeholder="user@example.com" formControlName="mail" autocomplete="mail" >
-                    @if (registerUserForm.get('mail') && registerUserForm.get('mail')?.dirty) {
+                    @if (changeUserForm.get('mail') && changeUserForm.get('mail')?.dirty) {
                     <!-- <mat-error>{{getErrorMessage()}}</mat-error> -->
                     }
                 </mat-form-field>
@@ -58,9 +58,22 @@
         </mat-card-actions>
         <mat-card-footer class="footer">
             <button mat-raised-button (click)="openDialog()">Annuler</button>
-            <button mat-raised-button color="primary" (click)=" sendNewUser()">Valider</button>
+            <button mat-raised-button color="primary" [disabled]="!canSubmit()" (click)=" sendNewUserConfig()">Valider</button>
         </mat-card-footer>
     </mat-card>
 
+    <!-- <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>Avatar</mat-card-title>
+        </mat-card-header>
 
-</div>    
+        <mat-card-actions>
+
+        </mat-card-actions>
+        <mat-card-footer class="footer">
+            <button mat-raised-button (click)="openDialog()">Annuler</button>
+            <button mat-raised-button color="primary" [disabled]="!changeUserForm.valid" (click)=" sendNewUserConfig()">Valider</button>
+        </mat-card-footer>
+    </mat-card> -->
+
+</div>  
