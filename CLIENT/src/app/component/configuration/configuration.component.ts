@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpService, Users } from '../service/http.service';
+import { HttpService, Users } from '../../service/http.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { FunctionsService } from '../service/functions.service';
+import { FunctionsService } from '../../service/functions.service';
 
 
 @Component({
