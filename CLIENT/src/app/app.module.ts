@@ -27,6 +27,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { ConfirmModalComponent } from './component/confirm-modal/confirm-modal.component';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { ProductsComponent } from './component/products/products.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 
 
@@ -40,7 +41,8 @@ import { ProductsComponent } from './component/products/products.component';
     RegisterComponent,
     ConfirmModalComponent,
     ConfigurationComponent,
-    ProductsComponent
+    ProductsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
