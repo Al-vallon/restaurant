@@ -8,6 +8,9 @@ const fs = require('fs');
 const userController = require('./src/controller/UserController.js');
 const loginController = require('./src/controller/loginController.js');
 
+const { verifyToken } = require('./src/isAdmin/isAdmin.js');
+const { isAdmin } = require('./src/isAdmin/isAdmin.js');
+
 const { successColor, errorColor, resetColor, nodePort } = require('./src/asset/colorizedLog');
 
 /* call auth middleware */
@@ -46,8 +49,12 @@ app.use
         (err, req, res, next) => {
             console.error('Erreur non gérée :', err);
             res.status(500).json({ error: 'Erreur interne du serveur' });
-        }
+        },
     );
+
+app.use('/settings', verifyToken);
+
+app.use('/admin', verifyToken, isAdmin);
 
 app.options('*', cors());
 
@@ -86,7 +93,17 @@ app.delete('/users', userController.deleteUser);
 app.post("/login", loginController.logUser);
 
 
-
+app.get('/admin', (req, res) => {
+    const userRole = req.role_id;
+    
+    if (userRole === 1) {
+        
+        res.status(200).json({ message: 'Accès autorisé à la page spéciale pour les administrateurs.' });
+      } else {
+        // Accès refusé
+        res.status(403).json({ message: 'Accès refusé. Vous n\'êtes pas autorisé à accéder à cette page.' });
+      }
+})
 
 
 

@@ -8,6 +8,41 @@ const privateKey = require('../auth/private_key');
 const { successColor, errorColor, resetColor, nodePort } = require('../asset/colorizedLog');
 
 
+// const logUser = async (req, res) => {
+//     try {
+//         const user = await User.findOne({ where: { name: req.body.name } });
+//         if (!user) {
+//             res.status(401).json({ message: 'Incorrect login or password' });
+//             return;
+//         }
+
+//         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+//         if (isPasswordValid) {
+//             /* create token if password is good */
+//             const token = jwt.sign(
+//                 { userId: user.isSoftDeleted, role_id: user.role_id },
+//                 privateKey,
+//                 { expiresIn:'24 H' }
+//                 // { userId: user.isAdmin },
+//                 // privateKey,
+//                 // { expiresIn:'24 H' }
+//             )
+//             console.log(successColor, 'Successful connection' ,resetColor, "user", user.role_id);
+//             res.status(200).json({ message: 'Successful connection', token: token });
+//         } else {
+//             console.log(errorColor, 'Incorrect login or passwordn' ,resetColor);
+//             res.status(401).json({ message: 'Incorrect login or password' });
+//         }
+//     } catch (error) {
+//         console.error(errorColor, 'Connection error', error, resetColor);
+//         res.status(500).json({ message: 'Connection error' });
+//     }
+// };
+
+// module.exports = {
+//     logUser
+// };
+
 const logUser = async (req, res) => {
     try {
         const user = await User.findOne({ where: { name: req.body.name } });
@@ -18,17 +53,16 @@ const logUser = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
         if (isPasswordValid) {
-
             /* create token if password is good */
             const token = jwt.sign(
-                { userId: user.isSoftDeleted },
+                { userId: user.isSoftDeleted, role_id: user.role_id },  // Fix here
                 privateKey,
-                { expiresIn:'24 H' }
-            )
-            console.log(successColor, 'Successful connection' ,resetColor);
-            res.status(200).json({ message: 'Successful connection', token: token  });
+                { expiresIn: '24 H' }
+            );
+            console.log(successColor, 'Successful connection', resetColor, "user", user.role_id);
+            res.status(200).json({ message: 'Successful connection', token: token });
         } else {
-            console.log(errorColor, 'Incorrect login or passwordn' ,resetColor);
+            console.log(errorColor, 'Incorrect login or passwordn', resetColor);
             res.status(401).json({ message: 'Incorrect login or password' });
         }
     } catch (error) {
