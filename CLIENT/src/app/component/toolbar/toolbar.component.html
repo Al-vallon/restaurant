@@ -11,4 +11,5 @@
     <button mat-icon-button (click)="login()">
         <mat-icon matTooltip="login" class="user-icon">person</mat-icon>
     </button>
+    <h1 *ngIf="username$ | async as username">hello {{username}}</h1>
 </mat-toolbar>

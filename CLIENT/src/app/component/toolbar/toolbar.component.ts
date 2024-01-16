@@ -1,21 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+
+import { UserDataService } from '../../service/user-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
-export class ToolbarComponent {
+export class ToolbarComponent  {
   @Input() sidenav!: MatSidenav;
   public isCollapsed: boolean = true;
+  public username$: Observable<string> = new Observable<string>();
 
-  toggleMenu() {
+  constructor(public router: Router,
+    public userService: UserDataService) {
+      
+    }
+
+    ngOnInit(): void {
+      this.username$ = this.userService.username$;
+    }
+
+  public toggleMenu() {
     console.log('eed', this.sidenav)
     if (this.sidenav) {
       console.log('here is collapsed');
-      this.sidenav.opened;
+      this.sidenav.toggle();
       this.isCollapsed = !this.isCollapsed;
       console.log('colapsed is', this.isCollapsed);
     } else {
@@ -30,7 +43,4 @@ export class ToolbarComponent {
   public configuration() {
     this.router.navigate(['/configuration']);
   }
-
-
-  constructor(public router: Router) {}
 }

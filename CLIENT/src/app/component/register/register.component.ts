@@ -51,15 +51,14 @@ export class RegisterComponent {
  **************************************************************/
 
   public sendNewUser() {
-    // if (this.registerUserForm && this.registerUserForm.valid) {
-      console.log('hop');
+    if (this.registerUserForm && this.registerUserForm.valid) {
       this.HttpService.registerUser(this.registerUserForm.value as Users)
       .pipe(take(1))
       .subscribe((registerData: any) => {
         this.saveRegisterUserData = registerData;
         console.log('register', this.saveRegisterUserData);
       })
-    // }
+    }
   }
 
   /* open confirm modal */

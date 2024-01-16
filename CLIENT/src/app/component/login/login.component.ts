@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorService } from '../../service/error.service';
 import { FunctionsService } from '../../service/functions.service';
+import { UserDataService } from '../../service/user-data.service';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +48,8 @@ export class LoginComponent implements OnDestroy {
     private HttpService: HttpService,
     public fb: FormBuilder,
     private errorService: ErrorService,
-    public fn: FunctionsService) 
+    public fn: FunctionsService,
+    public userService: UserDataService) 
     {}
 
 /*******************************************************************************************************
@@ -56,19 +58,24 @@ export class LoginComponent implements OnDestroy {
  * CHECKS WHETHER THE CONNECTION WAS SUCCESSFUL, AND REDIRECTS THE USER TO THE MAIN PAGE IF NECESSARY. *
  *******************************************************************************************************/
 
-    public sendLogin():void {
-      this.HttpService.logUser(this.userForm.value as Users)
-      .pipe(take(1))
-      .subscribe((data: any) => {
-        this.userResultObservable = data
-        console.log('this.userResultObservable', this.userResultObservable, 'ok', data);
-        if(this.userResultObservable.message === "Successful connection")  {
-          sessionStorage.setItem('Token', this.userResultObservable.token);
-          console.log('token', sessionStorage.getItem('Token'));
-          this.router.navigate(['/']);
+  public sendLogin():void {
+    this.HttpService.logUser(this.userForm.value as Users)
+    .pipe(take(1))
+    .subscribe((data: any) => {
+      this.userResultObservable = data
+      console.log('this.userResultObservable', this.userResultObservable, 'ok', data);
+      if(this.userResultObservable.message === "Successful connection")  {
+        sessionStorage.setItem('Token', this.userResultObservable.token);
+        console.log('token', sessionStorage.getItem('Token'));
+        const username = this.userForm.value.name;
+        if (typeof username === 'string' && username.trim() !== '') {
+          this.userService.setUsername(username);
+          console.log(username);
         }
-      });
-    }
+        this.router.navigate(['/']);
+      }
+    });
+  }
 
 
 
