@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 export interface Users {
   name: string;
@@ -13,7 +13,7 @@ export interface Users {
   providedIn: 'root'
 })
 export class HttpService {
-  private apiURL = 'https://localhost:5000'
+  private apiURL = 'https://localhost:5000';
 
   constructor(private http: HttpClient) { }
   
@@ -22,11 +22,23 @@ export class HttpService {
 
   /* Register user */
   public registerUser(user: Users): Observable<Users> {
-    return this.http.post<Users>(this.registerUserURL, user, { withCredentials: true });
+    return this.http.post<Users>(this.registerUserURL, user, { withCredentials: true })
+    .pipe(
+      catchError((error) => {
+        console.error('Error registering user:', error);
+        throw error; // Rethrow the error for the subscriber to handle
+      })
+    );
   }
 
   /* Login user */
   public logUser(user: Users): Observable<Users> {
-    return this.http.post<Users>(this.logUserURL, user, { withCredentials: true });
+    return this.http.post<Users>(this.logUserURL, user, { withCredentials: true })
+    .pipe(
+      catchError((error) => {
+        console.error('Error logging user:', error);
+        throw error; // Rethrow the error for the subscriber to handle
+      })
+    );;
   }
 }
