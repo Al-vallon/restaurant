@@ -5,7 +5,6 @@
             <mat-card-title>Connexion</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
-
             <form class="form" [formGroup]="userForm" (submit)="sendLogin()">
                 <mat-form-field class="full-width">
                     <mat-label>Username</mat-label>
@@ -40,9 +39,14 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
-                <p class="register">Pas encore inscrit ? <span class="link-register" (click)="redirection()">Cliquer içi</span></p>
+                
             </form>
-            
+            <div class="remember-toggle">
+                <p class="register">Pas encore inscrit ? <span class="link-register" (click)="redirection()">Cliquer içi</span></p>
+                <mat-slide-toggle class="example-margin" [(ngModel)]="rememberMe" (change)="saveSession()">
+                Se souvenir de moi
+                </mat-slide-toggle>
+            </div>
         </mat-card-actions>
         <mat-card-footer class="footer">
             <button mat-raised-button (click)="openDialog()">Annuler</button>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, take } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http'
 import { HttpService, Users } from '../../service/http.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { ErrorInterceptor } from '../../service/errorInterceptor/error-interceptor.service';
 import { Router } from '@angular/router';
@@ -33,6 +34,8 @@ export class LoginComponent implements OnDestroy {
   /* save token */
   public token!: string;
 
+  public rememberMe: boolean = false;
+
   /* get all datas of UserForm  */
   // public userForm =  FormGroup
 
@@ -49,8 +52,20 @@ export class LoginComponent implements OnDestroy {
     public fb: FormBuilder,
     private errorService: ErrorService,
     public fn: FunctionsService,
-    public userService: UserDataService) 
-    {}
+    public userService: UserDataService,
+    public localStorage: LocalStorageService) 
+    { }
+
+    ngOnInit(){
+      const remembreState = this.localStorage.getItem('rememberMe');
+      if (remembreState!== null){
+        this.rememberMe = remembreState;
+      }
+    }
+
+    saveSession() {
+      this.localStorage.setItem('rememberMe', this.rememberMe);
+    }
 
 /*******************************************************************************************************
  *         THIS METHOD MANAGES THE SENDING OF CONNECTION INFORMATION THROUGH THE HTTP SERVICE.         *

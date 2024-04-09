@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { httperrorInterceptor } from './utility/httperror.interceptor';
 
@@ -28,6 +29,7 @@ import { ConfirmModalComponent } from './component/confirm-modal/confirm-modal.c
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { ProductsComponent } from './component/products/products.component';
 import { AdminComponent } from './component/admin/admin.component';
+
 
 
 
@@ -56,6 +58,7 @@ import { AdminComponent } from './component/admin/admin.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatDialogModule,
     MatListModule,
     ReactiveFormsModule,

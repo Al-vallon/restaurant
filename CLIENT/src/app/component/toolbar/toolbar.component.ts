@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserDataService } from '../../service/user-data.service';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +17,8 @@ export class ToolbarComponent  {
   public username$: Observable<string> = new Observable<string>();
 
   constructor(public router: Router,
-    public userService: UserDataService) {
+    public userService: UserDataService,
+    public localStorage: LocalStorageService) {
       
     }
 
@@ -37,7 +39,12 @@ export class ToolbarComponent  {
   }
 
   public login() {
-    this.router.navigate(['/login']);
+    const rememberMe = this.localStorage.getItem('rememberMe');
+    if (rememberMe === true) { 
+      this.router.navigate(['/admin']); 
+    } else {
+      this.router.navigate(['/login']); 
+    }
   }
 
   public configuration() {

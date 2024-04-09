@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
+import { LocalStorageService } from '../../service/local-storage.service';
+import { Router } from '@angular/router';
 
 
 
@@ -9,7 +11,19 @@ import { MatToolbar } from '@angular/material/toolbar';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   // @ViewChild('sideNav') SideNav!: MatSidenav;
+
+  constructor(
+    public localStorage: LocalStorageService,
+    public router: Router )
+    { }
+
+  ngOnInit(): void {
+    const rememberMe = this.localStorage.getItem('rememberMe');
+    if (rememberMe === true) { 
+      this.router.navigate(['/admin']); 
+    }
+  }
 
 }

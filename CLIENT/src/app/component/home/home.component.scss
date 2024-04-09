@@ -1,28 +1,33 @@
-.container{
-    background-image: url("../../../assets/image/home.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    
+.container {
+    // width: 100%;
+    // background-image: url("../../../assets/image/home.webp");
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-color: transparent;
+
     .custom-font {
-        font-family: 'DryBrush', Roboto, "Helvetica Neue", sans-serif;
-        color:pink;
-      }
-
-    .container-img-home{
-        width: 100%;
-        height: 100vh;
-        // background-image: url("../../../assets/image/pexel.jpg");
-        // background-size: contain;
-        // background-repeat: no-repeat;
-        // .img{
-            // height: auto;
-            // width: 100vw;
-            
-        // }
-    
-        
+        font-family: "DryBrush", Roboto, "Helvetica Neue", sans-serif;
+        color: pink;
     }
+
+    // .img {
+    //     height: auto;
+    //     width: 100%;
+    //     background-image: url(../../../assets/image/home.webp);
+    //     background-size: cover;
+    //     background-repeat: no-repeat;
+    //     background-color: transparent;
+    // }
+
+//   .container-img-home {
+//     width: 100%;
+//     // height: 100vh;
+//     background-image: url("../../../assets/image/home.webp");
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     .img {
+//       height: auto;
+//     //   width: 100vw;
+//     }
+//   }
 }
-
-
