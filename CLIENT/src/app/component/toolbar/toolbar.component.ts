@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserDataService } from '../../service/user-data.service';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from '../../service/local-storage.service';
+import { LocalStorageService } from '../../service/localStorage.service';
 
 @Component({
   selector: 'app-toolbar',
