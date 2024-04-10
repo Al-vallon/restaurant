@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { LocalStorageService } from '../../service/localStorage.service';
+
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import { LocalStorageService } from '../../service/localStorage.service';
-import { Router } from '@angular/router';
+
+
 
 
 
@@ -19,7 +23,7 @@ export class HomeComponent {
     public router: Router )
     { }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     const rememberMe = this.localStorage.getItem('rememberMe');
     if (rememberMe === true) { 
       this.router.navigate(['/admin']); 

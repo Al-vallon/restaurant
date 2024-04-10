@@ -73,7 +73,7 @@ import { AdminComponent } from './component/admin/admin.component';
       provide: HTTP_INTERCEPTORS,
       useClass: httperrorInterceptor,
       multi: true,
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

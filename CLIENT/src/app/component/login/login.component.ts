@@ -58,16 +58,12 @@ export class LoginComponent implements OnDestroy {
 
     ngOnInit(){
       const remembreState = this.localStorage.getItem('rememberMe');
-      if (remembreState!== null){
+      if (remembreState !== null){
         this.rememberMe = remembreState;
       }
     }
 
-    saveSession() {
-      this.localStorage.setItem('rememberMe', this.rememberMe);
-    }
-
-/*******************************************************************************************************
+/******************************************************************************************************
  *         THIS METHOD MANAGES THE SENDING OF CONNECTION INFORMATION THROUGH THE HTTP SERVICE.         *
  *      IT SUBSCRIBES TO THE OBSERVABLE RESULTING FROM THE REQUEST, AND STORES THE DATA RECEIVED,      *
  * CHECKS WHETHER THE CONNECTION WAS SUCCESSFUL, AND REDIRECTS THE USER TO THE MAIN PAGE IF NECESSARY. *
@@ -81,6 +77,7 @@ export class LoginComponent implements OnDestroy {
       console.log('this.userResultObservable', this.userResultObservable, 'ok', data);
       if(this.userResultObservable.message === "Successful connection")  {
         sessionStorage.setItem('Token', this.userResultObservable.token);
+        // this.saveSession();
         console.log('token', sessionStorage.getItem('Token'));
         const username = this.userForm.value.name;
         if (typeof username === 'string' && username.trim() !== '') {
@@ -90,6 +87,12 @@ export class LoginComponent implements OnDestroy {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  public logOut(): void {
+    sessionStorage.clear();
+    this.localStorage.removeItem('rememberMe');
+    this.router.navigate(['/']);
   }
 
 
@@ -114,6 +117,10 @@ export class LoginComponent implements OnDestroy {
   /* redirection for new user */
   public redirection(){
     this.router.navigate(['/register']);
+  }
+
+  saveSession() {
+    this.localStorage.setItem('rememberMe', this.rememberMe);
   }
 
   public openDialog(){
