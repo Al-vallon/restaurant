@@ -7,6 +7,7 @@ const fs = require('fs');
 
 const userController = require('./src/controller/UserController.js');
 const loginController = require('./src/controller/loginController.js');
+const ProductController = require('./src/controller/ProductController.js');
 
 const { verifyToken } = require('./src/isAdmin/isAdmin.js');
 const { isAdmin } = require('./src/isAdmin/isAdmin.js');
@@ -27,15 +28,15 @@ const config_ID = require('./config_ID');
 const dbConfig = id.dbConfig;
 
 const options = {
-    key: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.crt')
+    key: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.key'),
+    cert: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.crt')
 };
 
 // const server = https.createServer(options, app);
 const server = https.createServer({
     ...options,
-    key: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/sushi/sushi/SERVER/server.crt')
+    key: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.key'),
+    cert: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.crt')
 }, app);
 
 server.on('error', (error) => {
@@ -120,6 +121,14 @@ app.get('/admin', (req, res) => {
         res.status(403).json({ message: 'Accès refusé. Vous n\'êtes pas autorisé à accéder à cette page.' });
         }
 });
+
+/**********************************************************************************
+ *                                                                                *
+ *                              * PRODUCT *                                       *
+ *                                                                                *
+ **********************************************************************************/
+
+app.get("/product", ProductController.getProductByID);
 
 
 server.listen(id.port, () => {
