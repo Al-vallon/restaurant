@@ -128,7 +128,8 @@ app.get('/admin', (req, res) => {
  *                                                                                *
  **********************************************************************************/
 
-app.get("/product", ProductController.getProductByID);
+app.get("/product/:id", ProductController.getProductByID);
+app.post("/product", ProductController.createProduct);
 
 
 server.listen(id.port, () => {

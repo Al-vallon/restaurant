@@ -6,6 +6,7 @@ const validator = require('validator');
 
 /* MODEL */
 const User = require('../models/users/users.js');
+const Product = require('../models/product/products.js');
 
 const id = require('../../config_ID');
 const config_ID = require('../../config_ID');

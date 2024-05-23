@@ -28,6 +28,10 @@ const Product = sequelize.define('Product', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+            args: true,
+            msg: "Product's name is already in use"
+        },
         validate: {
             len: {
                 args: [3,50],
@@ -58,14 +62,14 @@ const Product = sequelize.define('Product', {
         allowNull: false,
         validate: {
             isDecimal: {
-                msg: "Price muyst be a decimal number"
+                msg: "Price must be a decimal number"
             },
             min: {
                 args: [0],
-                msg: "Price must be positive number"
+                msg: "Price must be a positive number"
             }
         }
-    },
+    }
     // image: {
     //     type: DataTypes.BLOB,
     //     allowNull: true,
@@ -74,7 +78,7 @@ const Product = sequelize.define('Product', {
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
-        tableName: 'products'
+        tableName: 'product'
     });
 
     module.exports =  { sequelize, Product};
