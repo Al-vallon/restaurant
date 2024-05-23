@@ -28,15 +28,15 @@ const config_ID = require('./config_ID');
 const dbConfig = id.dbConfig;
 
 const options = {
-    key: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.crt')
+    key: fs.readFileSync('D:/Developpement web/resto/restaurant/SERVER/server.key'),
+    cert: fs.readFileSync('D:/Developpement web/resto/restaurant/SERVER/server.crt')
 };
 
 // const server = https.createServer(options, app);
 const server = https.createServer({
     ...options,
-    key: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.key'),
-    cert: fs.readFileSync('D:/Developpement web/restaurant-main/SERVER/server.crt')
+    key: fs.readFileSync('D:/Developpement web/resto/restaurant/SERVER/server.key'),
+    cert: fs.readFileSync('D:/Developpement web/resto/restaurant/SERVER/server.crt')
 }, app);
 
 server.on('error', (error) => {

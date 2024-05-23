@@ -1,4 +1,4 @@
-const {Product} = require('../models/product');
+const {Product} = require('../models/product/products');
 
 const { successColor, errorColor, resetColor, nodePort } = require('../asset/colorizedLog');
 
